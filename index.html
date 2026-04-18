@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PhishGuard | AI Phishing Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="glow blob-1"></div>
+        <div class="glow blob-2"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <div class="logo">🎣 PhishGuard</div>
+            <p class="subtitle">AI-powered threat intelligence. Instantly verify the safety of any URL and message.</p>
+        </header>
+
+        <section class="scanner-card">
+            <div class="input-group">
+                <label for="urlInput">Target URL</label>
+                <input type="url" id="urlInput" placeholder="https://example.com/login" autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <label for="textInput">Email / Message Content</label>
+                <textarea id="textInput" placeholder="Dear user, your account requires immediate verification..."></textarea>
+            </div>
+
+            <button id="analyzeBtn" class="btn-primary">
+                <span class="btn-text">Analyze Threat Level</span>
+                <div class="spinner hidden" id="loadingSpinner"></div>
+            </button>
+        </section>
+
+        <section id="resultsSection" class="results-card hidden">
+            <h2 class="results-title">Analysis Results</h2>
+            
+            <div class="score-container">
+                <div class="score-ring" id="scoreRing">
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg"
+                            d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path class="circle" id="scoreCircle"
+                            stroke-dasharray="0, 100"
+                            d="M18 2.0845
+                            a 15.9155 15.9155 0 0 1 0 31.831
+                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                    </svg>
+                    <div class="score-text">
+                        <span id="trustScoreValue">0</span>
+                        <span class="score-label">Trust Score</span>
+                    </div>
+                </div>
+                
+                <div class="risk-badge" id="riskBadge">Pending</div>
+            </div>
+
+            <div class="explanation-box">
+                <h3>AI Assessment</h3>
+                <p id="explanationText">Awaiting analysis...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

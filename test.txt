@@ -1,0 +1,448 @@
+Test 1 (classic phishing)
+
+URL:
+
+http://secure-login-update-account.com
+
+Message:
+
+URGENT! Your account has been suspended. Click the link below to verify immediately or your account will be permanently blocked.
+
+👉 Expected:
+
+Trust Score: low (~10–30)
+Risk: Dangerous
+Test 2 (bank scam style)
+
+URL:
+
+http://verify-bank-login-alert.net
+
+Message:
+
+Dear user, we detected unusual activity in your bank account. Please verify your identity immediately to avoid account suspension.
+🟡 MEDIUM RISK (should be suspicious)
+Test 3
+
+URL:
+
+http://amazon-offers-discount-sale.com
+
+Message:
+
+Limited time offer! Get 90% discount on all products. Hurry before the deal expires.
+
+👉 Expected:
+
+Trust Score: 40–60
+Risk: Suspicious
+Test 4
+
+URL:
+
+http://free-gift-card-now.xyz
+
+Message:
+
+Congratulations! You have been selected for a free gift card. Click here to claim your reward.
+🟢 SAFE (should return HIGH trust score)
+Test 5
+
+URL:
+
+https://www.wikipedia.org
+
+Message:
+
+Hey, can you check this article when you get time?
+
+👉 Expected:
+
+Trust Score: 70–90
+Risk: Safe
+Test 6
+
+URL:
+
+https://www.google.com
+
+Message:
+
+Meeting is scheduled at 3 PM today. Please join using the link.
+🔥 BONUS TEST (cross-vector magic)
+Test 7 (your USP)
+
+URL:
+
+http://secure-amazon-login-alert.com
+
+
+
+Amazon: Your account has been locked. Click here to unlock now.
+
+Legit-looking phishing (VERY IMPORTANT)
+
+URL:
+
+https://amazon-security-update-login.com
+
+Message:
+
+Amazon Security Alert: We noticed unusual activity. Please verify your account to avoid temporary suspension.
+
+👉 Why tricky:
+
+Looks professional
+No obvious “URGENT!!!”
+
+👉 Expected:
+
+Suspicious / Dangerous
+🟡 2. HTTPS but still fake
+
+URL:
+
+https://secure-paypal-verification.net
+
+Message:
+
+Your PayPal account needs verification. Please confirm your details to continue using our services.
+
+👉 Tests:
+
+HTTPS ≠ safe
+domain still suspicious
+🔴 3. URL looks almost real (typo attack)
+
+URL:
+
+https://www.go0gle.com
+
+Message:
+
+Security check required. Please log in again to confirm your identity.
+
+👉 Tests:
+
+typo (0 instead of o)
+your system should catch this via:
+URL patterns
+🟡 4. No URL but suspicious text
+
+URL:
+
+Message:
+
+You have been selected for a cash prize. Reply with your bank details to claim.
+
+👉 Tests:
+
+NLP model only
+🟡 5. Safe message + suspicious URL
+
+URL:
+
+http://free-money-now-win.xyz
+
+Message:
+
+Hey, check this link when you get time.
+
+👉 Tests:
+
+cross-vector logic
+
+👉 Expected:
+
+Suspicious (not safe)
+🟢 6. Suspicious wording but safe context
+
+URL:
+
+https://github.com
+
+Message:
+
+URGENT: Please review this pull request before deployment.
+
+👉 Tests:
+
+false positives
+system should not overreact
+🔴 7. Embedded link scam (REALISTIC)
+
+URL:
+
+http://bit.ly/secure-login-update
+
+Message:
+
+Click this shortened link to verify your account immediately.
+
+👉 Tests:
+
+short URL risk
+hidden destination
+🟡 8. Emotional manipulation
+
+URL:
+
+http://help-support-now.com
+
+Message:
+
+Your friend is in trouble and needs urgent financial help. Please send money immediately.
+
+👉 Tests:
+
+NLP emotional cues
+🔴 9. Combo attack (BEST DEMO CASE)
+
+URL:
+
+http://secure-bank-login-update.com
+
+Message:
+
+Bank Alert: Your account will be locked in 24 hours. Verify immediately to avoid losing access.
+
+👉 This should:
+
+trigger NLP
+trigger URL
+trigger domain risk
+
+👉 Expected:
+🔥 VERY LOW trust score
+
+🟢 10. Clean real-world case
+
+URL:
+
+https://stackoverflow.com
+
+Message:
+
+Here’s the solution to your coding problem.
+
+LEVEL 2 TEST CASES (Advanced)
+🔴 1. Subdomain attack (VERY IMPORTANT)
+
+URL:
+
+https://paypal.com.security-update-login.net
+
+Message:
+
+PayPal Alert: Suspicious activity detected. Log in now to secure your account.
+
+👉 Trick:
+
+real domain name hidden inside fake domain
+🔴 2. IDN Homograph attack (advanced)
+
+URL:
+
+https://xn--pple-43d.com
+
+Message:
+
+Apple Security: Please verify your Apple ID immediately.
+
+👉 Trick:
+
+looks like “apple.com” but isn’t
+🟡 3. Clean URL + dangerous message
+
+URL:
+
+https://drive.google.com
+
+Message:
+
+Upload your bank details in this document to receive your refund.
+
+👉 Tests:
+
+strong NLP override
+🟡 4. Suspicious URL + harmless message
+
+URL:
+
+http://secure-login-update-free.xyz
+
+Message:
+
+Hey, just sharing something interesting I found.
+
+👉 Tests:
+
+URL dominance
+🔴 5. Brand + extra words (common phishing)
+
+URL:
+
+https://amazon-verification-support-login.com
+
+Message:
+
+Amazon Notice: Your account requires verification. Click below.
+🔴 6. Numeric substitution
+
+URL:
+
+https://paypa1-secure-login.com
+
+Message:
+
+PayPal: Please confirm your identity to continue.
+
+👉 “1 instead of l”
+
+🟡 7. Time pressure without obvious keywords
+
+URL:
+
+http://account-update-check.net
+
+Message:
+
+Your account access will be limited soon unless action is taken.
+
+👉 Subtle urgency
+
+🟢 8. Legit corporate message
+
+URL:
+
+https://microsoft.com
+
+Message:
+
+Please update your system settings before the next scheduled reboot.
+
+👉 Should stay SAFE
+
+🔴 9. Crypto scam (modern threat)
+
+URL:
+
+http://crypto-airdrop-free-token.xyz
+
+Message:
+
+Claim your free crypto tokens now before the offer expires.
+
+👉 Important modern case
+
+🟡 10. Social engineering (friend impersonation)
+
+URL:
+
+http://help-now-support-team.com
+
+Message:
+
+Hi, I’m stuck and need urgent help. Can you send money quickly?
+🔥 BONUS EDGE CASES (for perfection)
+⚡ 11. Empty message + bad URL
+URL: http://login-update-secure-free.xyz
+Message: (empty)
+
+👉 Should still be risky
+
+⚡ 12. Safe URL + spammy text
+URL: https://youtube.com
+Message: You won a lottery! Send your details now!
+
+👉 Should be Suspicious
+
+⚡ 13. Mixed signals
+URL: https://github.com
+Message: Verify your account immediately to avoid suspension.
+
+👉 Should NOT be Dangerous (important balance)
+
+1. Bank Phishing Email (VERY REALISTIC)
+
+Scenario:
+User receives an email pretending to be from their bank.
+
+URL:
+
+https://secure-hdfc-login-update.com
+
+Message:
+
+HDFC Bank Alert: Your account will be temporarily blocked due to suspicious activity. Please verify your details immediately to avoid service disruption.
+
+👉 Expected:
+
+Dangerous
+Low trust score
+🔴 2. WhatsApp / Friend Scam
+
+Scenario:
+Someone pretending to be your friend asks for money.
+
+URL:
+
+Message:
+
+Hey, I’m in an emergency and need money urgently. Can you send 5000 now? I’ll return it later.
+
+👉 Expected:
+
+Dangerous
+Strong NLP detection
+🟡 3. Internship / Job Scam (VERY COMMON)
+
+Scenario:
+Fake recruiter offering job opportunity.
+
+URL:
+
+http://google-careers-apply-now.xyz
+
+Message:
+
+Congratulations! You have been shortlisted for a Google internship. Please fill your personal and bank details to proceed with onboarding.
+
+👉 Expected:
+
+Dangerous
+brand misuse + data request
+🟡 4. Legit Google Doc but malicious intent
+
+Scenario:
+Real Google Drive link used for phishing.
+
+URL:
+
+https://drive.google.com
+
+Message:
+
+Please upload your ID proof and bank details in this document for verification.
+
+👉 Expected:
+
+Dangerous (important test)
+shows your system isn’t fooled by trusted domains
+🟢 5. Normal safe interaction
+
+Scenario:
+Friend sharing something useful.
+
+URL:
+
+https://wikipedia.org
+
+Message:
+
+I found this article really helpful for your assignment, check it out when you have time.
+
+👉 Expected:
+
+Safe
+High trust score

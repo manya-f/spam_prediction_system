@@ -1,0 +1,15 @@
+# Environment variables
+.env
+
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ML Models
+*_model/
+*.pkl
+
+# Virtual environment
+venv/
+env/
