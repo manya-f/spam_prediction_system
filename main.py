@@ -146,12 +146,13 @@ def analyze_content(request: AnalyzeRequest):
     # 3. Domain Age
     domain = extract_domain(request.url)
     _, domain_age = get_domain_age(domain)
+    domain_score = 1.0 if (domain_age is None or domain_age < 180) else 0.0
     
     # 4. Trust Score (includes hardcoded rule overrides)
     trust_score, risk_label = calculate_trust_score(text_score, url_score, domain_age, request.url, request.text)
     
     # 5. Explainer
-    explanation = generate_explanation(risk_label, text_score, url_score)
+    explanation = generate_explanation(request.text, request.url, text_score, url_score, domain_score, risk_label)
     
     return AnalyzeResponse(
         trust_score=trust_score,

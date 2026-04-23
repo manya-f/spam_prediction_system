@@ -39,6 +39,32 @@ def is_similar_to_brand(domain):
 
     return False
 
+def apply_hard_rules(text, url):
+    text_lower = text.lower() if text else ""
+    url_lower = url.lower() if url else ""
+
+    # 🚨 Financial scam
+    if "bank details" in text_lower or "send money" in text_lower:
+        return 20, "Dangerous"
+
+    # 🚨 Credential phishing
+    if ("verify" in text_lower or "login" in text_lower) and "immediately" in text_lower:
+        return 25, "Dangerous"
+
+    # 🚨 Shortened URL
+    if "bit.ly" in url_lower or "tinyurl" in url_lower:
+        return 25, "Dangerous"
+
+    return None
+
+def get_label(score):
+    if score >= 75:
+        return "Safe"
+    elif score >= 50:
+        return "Suspicious"
+    else:
+        return "Dangerous"
+
 def calculate_trust_score(text_score, url_score, domain_age, url="", text=""):
     """
     Calculates an overall trust score based on weighted phishing probabilities.
@@ -54,8 +80,13 @@ def calculate_trust_score(text_score, url_score, domain_age, url="", text=""):
     Returns:
         tuple: (score (0-100), label (Safe / Suspicious / Dangerous))
     """
-    url_lower = url.lower()
-    text_lower = text.lower()
+    override = apply_hard_rules(text, url)
+    if override:
+        score, label = override
+        return score, label
+
+    url_lower = url.lower() if url else ""
+    text_lower = text.lower() if text else ""
     
     domain = extract_domain(url)
     
@@ -78,8 +109,6 @@ def calculate_trust_score(text_score, url_score, domain_age, url="", text=""):
         return 10, "Dangerous"
         
     danger_phrases = [
-        "send money",
-        "bank details",
         "claim prize",
         "verify account",
         "urgent help",
@@ -134,13 +163,7 @@ def calculate_trust_score(text_score, url_score, domain_age, url="", text=""):
     # Calculate Trust Score (Inversely proportional to risk, scale 0-100)
     trust_score = int((1.0 - risk) * 100)
     
-    # Determine Label based on thresholds
-    if trust_score > 80:
-        label = "Safe"
-    elif trust_score > 55:
-        label = "Suspicious"
-    else:
-        label = "Dangerous"
+    label = get_label(trust_score)
         
     return trust_score, label
 

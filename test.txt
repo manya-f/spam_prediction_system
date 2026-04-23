@@ -446,3 +446,68 @@ I found this article really helpful for your assignment, check it out when you h
 
 Safe
 High trust score
+
+🧪 TEST CASE 1 — Fake Internship Scam
+
+URL:
+
+https://careers-google-apply-now.xyz
+
+Message:
+
+Congratulations! You have been selected for a Google internship. Please submit your documents and bank details to proceed.
+
+👉 Expected: DANGEROUS
+✔ financial request + fake domain
+
+🧪 TEST CASE 2 — Legit Domain + Phishing Message (VERY IMPORTANT)
+
+URL:
+
+https://github.com
+
+Message:
+
+Security alert: Your account will be suspended. Please verify your credentials immediately.
+
+👉 Expected: SUSPICIOUS or DANGEROUS
+✔ content is phishing even if domain is safe
+
+🧪 TEST CASE 3 — Shortened URL Trap
+
+URL:
+
+http://bit.ly/verify-account-now
+
+Message:
+
+Click this link to confirm your account immediately to avoid suspension.
+
+👉 Expected: DANGEROUS
+✔ shortened link + urgency + verification
+
+🧪 TEST CASE 4 — Normal Message (Control Test)
+
+URL:
+
+-
+
+Message:
+
+Hey, are we still meeting for the project discussion at 5 PM?
+
+👉 Expected: SAFE
+✔ no risk signals
+
+🧪 TEST CASE 5 — Advanced Typosquatting (VERY IMPORTANT)
+
+URL:
+
+https://paypa1-secure-login.com
+
+Message:
+
+PayPal Notice: Suspicious activity detected. Log in now to secure your account.
+
+👉 Expected: DANGEROUS
+✔ paypa1 + login + urgency
